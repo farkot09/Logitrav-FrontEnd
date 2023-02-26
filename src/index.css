@@ -1,3 +1,8 @@
+:root{
+  --main-color:#204c74;
+  --second-color:#20a094;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +15,107 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.logo {
+  height: 100px;
+}
+
+/* CONTENEDOR PRINCIPAL */
+.contenedor-principal {
+  max-width: 940px;
+  
+}
+
+
+/*---------------- CABECERA--------------- */
+
+
+.container-cabecera {
+  text-align: end;
+}
+
+
+.titulo-logo {
+  font-size: 2rem;
+  color: gray;
+  padding: 0px;
+  margin: 0px; 
+}
+
+.subtitulo-logo {
+  font-size: 1rem;
+  color: gray;
+  padding: 0px;
+  margin: 0px;
+ 
+}
+
+.divisor{
+  background-color:var(--main-color);
+  border-top: 2px solid gray;
+  border-left: 2px solid gray;
+  border-right: 2px solid gray;
+  opacity: 0.9;
+}
+
+/*---------------- LOGINN --------------- */
+
+.contenedor-paginas{
+  min-height: 193px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  
+}
+
+.inputs-general{
+  border:3px solid var(--second-color) ;
+}
+
+.boton-login{
+  width: 100%;
+  background-color: #204c74 ;
+  color: white;
+  border-radius: 7px;
+
+}
+
+/* MOTONAVES */
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.iconos{
+  margin: 5px;
+}
+
+
+
+
+/*-------------------- MEDIAS QUERYS ----------------------*/
+
+@media screen and (max-width: 767px) {
+  .container-logo {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .container-cabecera {
+    display: none;
+  }
+
+  .logo {
+    height: 70px;
+  }
+  .no-mostrar{
+    display: none;
+  }
+}
+
+@media screen and (min-width: 767px) {
+  .si-mostrar{
+    display: none;
+  }
 }

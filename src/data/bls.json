@@ -1,0 +1,28 @@
+{
+    "error": false,
+    "statusCode": 200,
+    "message": "OK",
+    "img_statusCode": "https://http.cat/200",
+    "data": [
+        {
+            "_id": "63f5922f5b1612da45c42d31",
+            "id_motonave": "63e44ff50fede5cd3e6fbbda",
+            "numero_bl": "BL5501",
+            "cantidad": 30,
+            "marca": "KIA",
+            "transporte": "LOGIVECO",
+            "condicion": "NACIONALIZADO",
+            "__v": 0
+        },
+        {
+            "_id": "63f592335b1612da45c42d34",
+            "id_motonave": "63e44ff50fede5cd3e6fbbda",
+            "numero_bl": "BL5502",
+            "cantidad": 20,
+            "marca": "KIA",
+            "transporte": "LOGIVECO",
+            "condicion": "NACIONALIZADO",
+            "__v": 0
+        }
+    ]
+}
