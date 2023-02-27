@@ -28,8 +28,8 @@ export const Menu = () => {
           </li>
           <li>
           <hr className="dropdown-divider" />
-            <a className="dropdown-item" href="#">
-              Selecionar
+            <a className="dropdown-item" href="/Motonaves?ruta=MotonavesActivas">
+              Motonaves Activas
             </a>
           </li>          
         </ul>

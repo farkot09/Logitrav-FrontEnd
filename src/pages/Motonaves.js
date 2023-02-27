@@ -3,10 +3,10 @@ import { CrearMotonave } from "../components/Motonaves/CrearMotonave";
 import { ListarMotonaves } from "../components/Motonaves/ListarMotonaves";
 import { useSearchParams } from "react-router-dom";
 import { EditarMotonave } from "../components/Motonaves/EditarMotonave";
+import { MotonavesActivas } from "../components/Motonaves/MotonavesActivas";
 
 export const Motonaves = () => {
-  const [searchParams] = useSearchParams(); 
-  console.log(searchParams); 
+  const [searchParams] = useSearchParams();   
   if (searchParams.get("ruta") === "CrearMotonave") {
     return (
       <div className="row border d-flex align-items-center justify-content-center contenedor-paginas">
@@ -31,7 +31,15 @@ export const Motonaves = () => {
         </div>
       </div>
     );
-  }else {
+  } else if(searchParams.get("ruta") === "MotonavesActivas"){
+    return (
+      <div className="row border d-flex align-items-center justify-content-center contenedor-paginas">
+        <div className="col-12 col-sm-8">
+         <MotonavesActivas />
+        </div>
+      </div>
+    );
+  }  else {
     return (
       <div className="row border d-flex align-items-center justify-content-center contenedor-paginas">
         <div className="col-12 col-sm-12">

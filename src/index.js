@@ -8,6 +8,7 @@ import { Login } from "./pages/Login";
 import { Inicio } from "./pages/Inicio";
 import { Motonaves } from "./pages/Motonaves";
 import { Operaciones } from "./pages/Operaciones";
+
 const router = createBrowserRouter([
   {
     path: "/",

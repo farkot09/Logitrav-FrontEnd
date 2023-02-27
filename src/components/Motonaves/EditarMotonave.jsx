@@ -4,8 +4,7 @@ import motonavesData from "../../data/motonaves.json";
 
 export const EditarMotonave = ({id_motonave}) => {
     const [dataMotonaves] = useState(motonavesData);
-    const data = dataMotonaves.data.filter(mn => mn._id === id_motonave)
-    console.log(data);
+    const data = dataMotonaves.data.filter(mn => mn._id === id_motonave)    
   return (
     <form className="mb-2">     
          <label>Editar Motonave</label>
