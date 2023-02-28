@@ -8,6 +8,7 @@ import { Login } from "./pages/Login";
 import { Inicio } from "./pages/Inicio";
 import { Motonaves } from "./pages/Motonaves";
 import { Operaciones } from "./pages/Operaciones";
+import { Bls } from "./pages/Bls";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
   {
     path: "/Operaciones",
     element: <Operaciones />,
+  },
+  {
+    path: "/Bls",
+    element: <Bls />,
   },
 ]);
 

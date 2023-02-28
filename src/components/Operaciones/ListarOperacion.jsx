@@ -34,7 +34,7 @@ export const ListarOperacion = ({ id_motonave }) => {
             <tr>
                 <td>{ mnFilter[0].cantidad_bls === blFilter.length 
                 ? <button className="btn btn-success" >Ver Bls</button> 
-                : <button className="btn btn-danger" >Agregar Bls</button> 
+                : <a href={`/Bls?id_motonave=${id_motonave}`}><button className="btn btn-danger" >Agregar Bls</button></a> 
                 }</td>
                 <td>
                 { mnFilter[0].cantidad === chasisFilter.length 
