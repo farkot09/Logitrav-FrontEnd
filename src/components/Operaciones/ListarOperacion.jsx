@@ -33,13 +33,13 @@ export const ListarOperacion = ({ id_motonave }) => {
         <tbody>
             <tr>
                 <td>{ mnFilter[0].cantidad_bls === blFilter.length 
-                ? <button className="btn btn-success" >Ver Bls</button> 
+                ? <a href={`/Bls?id_motonave=${id_motonave}`}><button className="btn btn-success" >Ver Bls</button> </a>
                 : <a href={`/Bls?id_motonave=${id_motonave}`}><button className="btn btn-danger" >Agregar Bls</button></a> 
                 }</td>
                 <td>
                 { mnFilter[0].cantidad === chasisFilter.length 
-                ? <button className="btn btn-success" >Ver Chasis</button> 
-                : <button className="btn btn-danger" >Agregar Chasis</button> 
+                ? <a href={`/Chasis?id_motonave=${id_motonave}`}><button className="btn btn-success" >Ver Chasis</button> </a>
+                : <a href={`/Chasis?id_motonave=${id_motonave}`}><button className="btn btn-danger" >Agregar Chasis</button> </a>
                 }
                 </td>
                 <td>
@@ -71,7 +71,7 @@ export const ListarOperacion = ({ id_motonave }) => {
                     }
                 </td>
                 <td className="no-mostrar">
-                    <button className="btn btn-info">ver</button>
+                <a href={`/Procesos?id_motonave=${id_motonave}&nombre_motonave=${mnFilter[0].nombre_motonave}&ruta=VerProcesos`}><button className="btn btn-info">ver</button></a>
                 </td>
                 {
                     mnFilter[0].operacion 
@@ -104,7 +104,7 @@ export const ListarOperacion = ({ id_motonave }) => {
                     }
                 </td>
                 <td className="si-mostrar">
-                    <button className="btn btn-info">ver</button>
+                <a href={`/Procesos?id_motonave=${id_motonave}&nombre_motonave=${mnFilter[0].nombre_motonave}&ruta=VerProcesos`}><button className="btn btn-info">ver</button></a>
                 </td>
                 <td></td>
                 <td></td>

@@ -23,6 +23,26 @@
             "transporte": "LOGIVECO",
             "condicion": "NACIONALIZADO",
             "__v": 0
+        },
+        {
+            "_id": "63f592335b1612da45c42d35",
+            "id_motonave": "63fac03be66caa57451842f0",
+            "numero_bl": "BL5502",
+            "cantidad": 200,
+            "marca": "KIA",
+            "transporte": "LOGIVECO",
+            "condicion": "NACIONALIZADO",
+            "__v": 0
+        },
+        {
+            "_id": "63f592335b1612da45c42d36",
+            "id_motonave": "63fac03be66caa57451842f0",
+            "numero_bl": "BL5502",
+            "cantidad": 145,
+            "marca": "KIA",
+            "transporte": "LOGIVECO",
+            "condicion": "NACIONALIZADO",
+            "__v": 0
         }
     ]
 }

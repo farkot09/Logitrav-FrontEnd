@@ -9,11 +9,13 @@ import { Inicio } from "./pages/Inicio";
 import { Motonaves } from "./pages/Motonaves";
 import { Operaciones } from "./pages/Operaciones";
 import { Bls } from "./pages/Bls";
+import { Chasis } from "./pages/Chasis";
+import { Procesos } from "./pages/Procesos";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <h1>Inicio</h1>,
+    element: <Inicio />,
     errorElement: <h1>Error</h1>,
   },
   {
@@ -36,6 +38,14 @@ const router = createBrowserRouter([
   {
     path: "/Bls",
     element: <Bls />,
+  },
+  {
+    path: "/Chasis",
+    element: <Chasis />,
+  },
+  {
+    path: "/Procesos",
+    element: <Procesos />,
   },
 ]);
 
