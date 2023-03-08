@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Logo } from "./Logo";
 import {Menu} from "./Menu"
 
 export const Cabecera = () => {
+  const [nombreusuario, setnombreusuario] = useState("")
+  useEffect(() => {
+    const loggedUser = sessionStorage.getItem("loggedUser")
+    if (loggedUser) {
+      const usuario = JSON.parse(loggedUser)
+      setnombreusuario(usuario.dataUser.nombre)
+    }
+  }, [])
+  
   return (
     <div className="p-0 m-0">
       <div className="row ">
@@ -21,7 +30,7 @@ export const Cabecera = () => {
           </div>
           <div>
             <p className="subtitulo-logo">
-              Esta registrado como: viktorgrajales | Cambiar Contraseña | Salir
+              Esta registrado como: {nombreusuario} | Cambiar Contraseña | Salir
             </p>
           </div>
         </div>

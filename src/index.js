@@ -18,12 +18,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <Inicio />,
     errorElement: <h1>Error</h1>,
-  },
-  {
-    path: "/Login",
-    element: <Login />,
-    errorElement: <h1>Error</h1>,
-  },
+  },  
   {
     path: "/Inicio",
     element: <Inicio />,
@@ -53,13 +48,17 @@ const router = createBrowserRouter([
     element: <Despachos />,
   },
 ]);
-
+const loggedUser = sessionStorage.getItem("loggedUser")
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <div className="container-fluid contenedor-principal">
       <Cabecera />
-      <RouterProvider router={router} />
+      {
+        loggedUser 
+        ?<RouterProvider router={router} />
+        :<Login />        
+      }
     </div>
   </React.StrictMode>
 );
