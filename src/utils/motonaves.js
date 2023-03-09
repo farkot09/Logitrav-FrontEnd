@@ -1,5 +1,5 @@
 import { ruta } from "./ruta";
-const token = JSON.parse(sessionStorage.getItem("loggedUser")).token
+const token = JSON.parse(sessionStorage.getItem("loggedUser"))?.token
 
 export const crearMotonave = async (data) => {    
   const res = await fetch(`${ruta}motonaves`, {
