@@ -3,12 +3,13 @@ import chasisData from "../../data/chasis.json"
 import { obtenerMotonaveId } from "../../utils/motonaves";
 import { obtenerBlsPorMotonave } from "../../utils/bls";
 import { Cargando } from "../Cargando";
+import { obtenerChasisPorMotonave } from "../../utils/chasis";
 
 export const ListarOperacion = ({ id_motonave }) => {
   const [dataMotonaves, setdataMotonaves] = useState(null);
   const [dataBls, setdataBls] = useState(null);
-  const [dataChasis, setdataChasis] = useState(chasisData); 
-  const chasisFilter = dataChasis.data.filter((chasis) => chasis.id_motonave === id_motonave )
+  const [dataChasis, setdataChasis] = useState([]); 
+  //const chasisFilter = dataChasis.data.filter((chasis) => chasis.id_motonave === id_motonave )
   const [ver, setver] = useState(false)
 
   useEffect(() => {
@@ -21,6 +22,11 @@ export const ListarOperacion = ({ id_motonave }) => {
     obtenerBlsPorMotonave(id_motonave).then((res) => {
       if (res.error === false) {
         setdataBls(res.data)
+      }
+    })
+    obtenerChasisPorMotonave(id_motonave).then((res) => {
+      if (res.error === false) {
+        setdataChasis(res.data)
       }
     })
 
@@ -59,7 +65,7 @@ export const ListarOperacion = ({ id_motonave }) => {
                 : <a href={`/Bls?id_motonave=${id_motonave}`}><button className="btn btn-danger" >Agregar Bls</button></a> 
                 }</td>
                 <td>
-                { dataMotonaves.cantidad === chasisFilter.length 
+                { dataMotonaves.cantidad === dataChasis.length 
                 ? <a href={`/Chasis?id_motonave=${id_motonave}`}><button className="btn btn-success" >Ver Chasis</button> </a>
                 : <a href={`/Chasis?id_motonave=${id_motonave}`}><button className="btn btn-danger" >Agregar Chasis</button> </a>
                 }
@@ -69,7 +75,7 @@ export const ListarOperacion = ({ id_motonave }) => {
                 ? "BLS OK |" 
                 : "BLS Incompletos |" 
                 }
-                { dataMotonaves.cantidad === chasisFilter.length 
+                { dataMotonaves.cantidad === dataChasis.length 
                 ? " Chasis OK" 
                 : " Chasis Incompletos" 
                 }
@@ -77,17 +83,17 @@ export const ListarOperacion = ({ id_motonave }) => {
                 </td>
                 <td className="no-mostrar">
                     {
-                        (dataMotonaves.cantidad_bls === dataBls.length && dataMotonaves.cantidad === chasisFilter.length ) && (dataMotonaves.operacion)
+                        (dataMotonaves.cantidad_bls === dataBls.length && dataMotonaves.cantidad === dataChasis.length ) && (dataMotonaves.operacion)
                         ? <button className="btn btn-success">Desactivar</button>
                         : ""
                     }
                     {
-                        (dataMotonaves.cantidad_bls === dataBls.length && dataMotonaves.cantidad === chasisFilter.length) && (!dataMotonaves.operacion)
+                        (dataMotonaves.cantidad_bls === dataBls.length && dataMotonaves.cantidad === dataChasis.length) && (!dataMotonaves.operacion)
                         ?<button className="btn btn-success">Activar</button>
                         :""
                     }
                     {
-                        dataMotonaves.cantidad_bls === dataBls.length && dataMotonaves.cantidad === chasisFilter.length
+                        dataMotonaves.cantidad_bls === dataBls.length && dataMotonaves.cantidad === dataChasis.length
                         ?""
                         :<button className="btn btn-danger" disabled>Activar</button>
                     }
@@ -110,17 +116,17 @@ export const ListarOperacion = ({ id_motonave }) => {
             <tr className="si-mostrar">
             <td className="si-mostrar">
                     {
-                        (dataMotonaves.cantidad_bls === dataBls.length && dataMotonaves.cantidad === chasisFilter.length ) && (dataMotonaves.operacion)
+                        (dataMotonaves.cantidad_bls === dataBls.length && dataMotonaves.cantidad === dataChasis.length ) && (dataMotonaves.operacion)
                         ? <button className="btn btn-success">Desactivar</button>
                         : ""
                     }
                     {
-                        (dataMotonaves.cantidad_bls === dataBls.length && dataMotonaves.cantidad === chasisFilter.length) && (!dataMotonaves.operacion)
+                        (dataMotonaves.cantidad_bls === dataBls.length && dataMotonaves.cantidad === dataChasis.length) && (!dataMotonaves.operacion)
                         ?<button className="btn btn-success">Activar</button>
                         :""
                     }
                     {
-                        dataMotonaves.cantidad_bls === dataBls.length && dataMotonaves.cantidad === chasisFilter.length
+                        dataMotonaves.cantidad_bls === dataBls.length && dataMotonaves.cantidad === dataChasis.length
                         ?""
                         :<button className="btn btn-danger" disabled>Activar</button>
                     }
