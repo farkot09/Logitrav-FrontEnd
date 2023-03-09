@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import chasisData from "../../data/chasis.json"
-import { obtenerMotonaveId } from "../../utils/motonaves";
+import { obtenerMotonaveId, actualizarMotonave } from "../../utils/motonaves";
 import { obtenerBlsPorMotonave } from "../../utils/bls";
 import { Cargando } from "../Cargando";
 import { obtenerChasisPorMotonave } from "../../utils/chasis";
+import toast, { Toaster } from "react-hot-toast";
 
 export const ListarOperacion = ({ id_motonave }) => {
   const [dataMotonaves, setdataMotonaves] = useState(null);
   const [dataBls, setdataBls] = useState(null);
-  const [dataChasis, setdataChasis] = useState([]); 
-  //const chasisFilter = dataChasis.data.filter((chasis) => chasis.id_motonave === id_motonave )
+  const [dataChasis, setdataChasis] = useState([]);  
   const [ver, setver] = useState(false)
+  const [change, setchange] = useState("")
 
   useEffect(() => {
     obtenerMotonaveId(id_motonave).then((res) => {
@@ -30,11 +31,38 @@ export const ListarOperacion = ({ id_motonave }) => {
       }
     })
 
-  }, [])
+  }, [change])
+
+  const handleActivarOperacion = async(e) => {
+    toast.loading("cargando...",{
+      style: { backgroundColor: "#204c74", color: "#fff" },
+    })
+    const newDataMotonave = {
+      ...dataMotonaves,
+      id_motonave:dataMotonaves._id,
+      operacion:!dataMotonaves.operacion
+    }    
+    await actualizarMotonave(newDataMotonave).then((res) => {
+      if (res.error === false) {
+        setchange(new Date())
+        toast.dismiss()
+        toast.success(`${res.message}`,{
+          style: { backgroundColor: "#204c74", color: "#fff" },
+        })        
+      }else{
+        toast.dismiss() 
+        toast.error(`${res.message}`,{
+          style: { backgroundColor: "#204c74", color: "#fff" },
+        })        
+
+      }
+    })
+  }
   
   
   return (
-    <div className="row p-2">      
+    <div className="row p-2">  
+    <Toaster position="top-center"/>    
       {
         dataMotonaves && dataBls
         ? <div className="card" style={{width:400}}>
@@ -84,12 +112,12 @@ export const ListarOperacion = ({ id_motonave }) => {
                 <td className="no-mostrar">
                     {
                         (dataMotonaves.cantidad_bls === dataBls.length && dataMotonaves.cantidad === dataChasis.length ) && (dataMotonaves.operacion)
-                        ? <button className="btn btn-success">Desactivar</button>
+                        ? <button onClick={handleActivarOperacion} className="btn btn-success">Desactivar</button>
                         : ""
                     }
                     {
                         (dataMotonaves.cantidad_bls === dataBls.length && dataMotonaves.cantidad === dataChasis.length) && (!dataMotonaves.operacion)
-                        ?<button className="btn btn-success">Activar</button>
+                        ?<button onClick={handleActivarOperacion} className="btn btn-success">Activar</button>
                         :""
                     }
                     {
@@ -117,12 +145,12 @@ export const ListarOperacion = ({ id_motonave }) => {
             <td className="si-mostrar">
                     {
                         (dataMotonaves.cantidad_bls === dataBls.length && dataMotonaves.cantidad === dataChasis.length ) && (dataMotonaves.operacion)
-                        ? <button className="btn btn-success">Desactivar</button>
+                        ? <button onClick={handleActivarOperacion} className="btn btn-success">Desactivar</button>
                         : ""
                     }
                     {
                         (dataMotonaves.cantidad_bls === dataBls.length && dataMotonaves.cantidad === dataChasis.length) && (!dataMotonaves.operacion)
-                        ?<button className="btn btn-success">Activar</button>
+                        ?<button onClick={handleActivarOperacion} className="btn btn-success">Activar</button>
                         :""
                     }
                     {
