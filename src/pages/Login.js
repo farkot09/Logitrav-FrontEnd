@@ -6,6 +6,7 @@ export const Login = () => {
   const [usuario, setusuario] = useState("");
   const [password, setpassword] = useState("");
   
+  
   useEffect(() => {
     const loggedUserJson = sessionStorage.getItem("loggedUser");
     if (loggedUserJson) {
@@ -16,10 +17,12 @@ export const Login = () => {
   }, []);
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
     toast.loading("Cargando...", {
       style: { backgroundColor: "#204c74", color: "#fff" },
     });
-    e.preventDefault();
+      
+
     try {
       const user = await login({ usuario, password });
       if (!user.error) {
@@ -45,7 +48,7 @@ export const Login = () => {
         }, 3000);
       }
     } catch (error) {
-      console.log(error);
+      
     }
   };
   return (

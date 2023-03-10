@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { MarcacionTabla } from "../components/Procesos/MarcacionTabla";
 import { MarcacionCrear } from "../components/Procesos/MarcacionCrear";
 import { useSearchParams } from "react-router-dom";
@@ -9,11 +9,30 @@ import { DespachosTabla } from "../components/Procesos/DespachosTabla";
 import { DescargueCrear } from "../components/Procesos/DescargueCrear";
 import { ImprontasTomaCrear } from "../components/Procesos/ImprontasTomaCrear";
 import { ImprontasRevisionCrear } from "../components/Procesos/ImprontasRevisionCrear";
+import {obtenerChasisPorMotonave} from "../utils/chasis"
+import { obtenerMarcacion } from "../utils/procesos";
+
 export const Procesos = () => {
   const [searchParams] = useSearchParams();
   const ruta = searchParams.get("ruta");
   const id_motonave = searchParams.get("id_motonave");
   const nombre_motonave = searchParams.get("nombre_motonave");
+
+  useEffect(() => {
+    obtenerChasisPorMotonave(id_motonave).then((res) => {
+      if (res.error === false) {
+        localStorage.setItem("dataChasis",JSON.stringify(res.data))
+        localStorage.setItem("cantidad", res.data.length)
+      }
+    })
+    obtenerMarcacion(id_motonave).then((res) => {
+      if (res.error === false) {
+        localStorage.setItem("marcados", res.data.length)
+      }
+    })
+  }, [])
+  
+
   if (ruta === "VerProcesos") {
     return (
       <div className="row border d-flex align-items-center justify-content-center contenedor-paginas">
