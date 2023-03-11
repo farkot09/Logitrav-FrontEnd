@@ -41,21 +41,21 @@ export const Procesos = () => {
     obtenerTomados(id_motonave).then((res) => {
       if (res.error === false) {
         localStorage.setItem("tomado", res.data.length || 0)
-        console.log(res);
+       
       }
     })
 
     obtenerRevisados(id_motonave).then((res) => {
       if (res.error === false) {
         localStorage.setItem("revisado", res.data.length || 0)
-        console.log(res);
+        
       }
     })
 
     obtenerDespachos(id_motonave).then((res) => {
       if (res.error === false) {
         localStorage.setItem("despachado", res.data.length || 0)
-        console.log(res);
+        
       }
     })
 
