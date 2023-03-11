@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { crearMarcacion } from "../../utils/procesos";
 import toast, { Toaster } from "react-hot-toast";
+import { obtenerMarcacion } from "../../utils/procesos";
+import { Cargando } from "../Cargando"
+
 
 export const MarcacionCrear = ({ id_motonave, nombre_motonave }) => {
   const [dataChasis, setdataChasis] = useState([]);
+  const [faltantes, setfaltantes] = useState([])
   const [chasisBuscar, setchasisBuscar] = useState("");
   const [id_usuario, setid_usuario] = useState(0);
   const [chasisRegistrado, setchasisRegistrado] = useState("");
   const [resultadoChasis, setresultadoChasis] = useState("");
   const [cantidadTotal, setcantidadTotal] = useState(0);
   const [marcados, setmarcados] = useState(0);
+  const [ifcargando, setifcargando] = useState(false)
 
   useEffect(() => {
     setdataChasis(JSON.parse(localStorage.getItem("dataChasis")));
@@ -71,8 +76,27 @@ export const MarcacionCrear = ({ id_motonave, nombre_motonave }) => {
     });
   };
 
+  const verfaltantes = async () => {
+    setfaltantes([])
+    setifcargando(true)
+    let sinMarcar = []
+    const marcacion = await obtenerMarcacion(id_motonave)
+    for (let index = 0; index < dataChasis.length; index++) {
+      const element = dataChasis[index];
+      const ifMarcacion = await marcacion.data.find(res => res.id_chasis === element._id)
+      if (ifMarcacion === undefined) {
+        sinMarcar.push(element)
+      }
+            
+    }
+   
+    setfaltantes(sinMarcar)
+    setifcargando(false)
+    
+  }
+
   return (
-    <div className="row">
+    <div className="row alert alert-primary">
       <div className="col-12 col-sm-6">
         <Toaster position="top-center" />
         <h3>Marcacion a Bordo</h3>
@@ -97,9 +121,21 @@ export const MarcacionCrear = ({ id_motonave, nombre_motonave }) => {
             value="Regitrar"
           />
         </form>
-        <button className="form-control input-sm btn btn-danger m-1">
+        <button className="form-control input-sm btn btn-danger m-1" onClick={verfaltantes}>
           Ver Faltantes
         </button>
+        {
+          ifcargando ? <div className="row" > <Cargando /> </div> :""
+        }
+        {
+          faltantes?.map((data,index) => (
+            <div key={data._id} className="row alert alert-primary">
+              <div className="col">{index+1}</div>
+              <div className="col">{data.chasis}</div>
+              <div className="col" >{data.modelo}</div>
+            </div>
+          ))
+        }
       </div>
       <div className="col-12 col-sm-6">
         <div className="row">

@@ -10,7 +10,8 @@ import { DescargueCrear } from "../components/Procesos/DescargueCrear";
 import { ImprontasTomaCrear } from "../components/Procesos/ImprontasTomaCrear";
 import { ImprontasRevisionCrear } from "../components/Procesos/ImprontasRevisionCrear";
 import {obtenerChasisPorMotonave} from "../utils/chasis"
-import { obtenerMarcacion } from "../utils/procesos";
+import { obtenerMarcacion, obtenerDescargue, obtenerTomados, obtenerRevisados } from "../utils/procesos";
+import { obtenerDespachos } from "../utils/despachos";
 
 export const Procesos = () => {
   const [searchParams] = useSearchParams();
@@ -30,6 +31,35 @@ export const Procesos = () => {
         localStorage.setItem("marcados", res.data.length)
       }
     })
+
+    obtenerDescargue(id_motonave).then((res) => {
+      if (res.error === false) {
+        localStorage.setItem("descargado", res.data.length || 0)        
+      }
+    })
+
+    obtenerTomados(id_motonave).then((res) => {
+      if (res.error === false) {
+        localStorage.setItem("tomado", res.data.length || 0)
+        console.log(res);
+      }
+    })
+
+    obtenerRevisados(id_motonave).then((res) => {
+      if (res.error === false) {
+        localStorage.setItem("revisado", res.data.length || 0)
+        console.log(res);
+      }
+    })
+
+    obtenerDespachos(id_motonave).then((res) => {
+      if (res.error === false) {
+        localStorage.setItem("despachado", res.data.length || 0)
+        console.log(res);
+      }
+    })
+
+
   }, [])
   
 

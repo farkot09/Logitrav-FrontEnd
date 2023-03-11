@@ -1,25 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
 
 export const DescargueTabla = ({id_motonave, nombre_motonave}) => {
+  const [descargados, setdescargados] = useState(0)
+  const [cantidad, setcantidad] = useState(0)
+  useEffect(() => {
+    setdescargados(localStorage.getItem("descargado"))
+    setcantidad(localStorage.getItem("cantidad"))
+  }, [])
   return (
-    <div className="row col-12 col-sm-12 m-2">
+    <div className="row col-12 col-sm-12 m-2 alert alert-success">
       <a class="btn btn-success" href={`Procesos?ruta=CrearDescargue&id_motonave=${id_motonave}&nombre_motonave=${nombre_motonave}`} >Descargue</a>
-      <table class="table table-hover table-condensed table-bordered">
-        <tbody>
-          <tr>
-            <td>Vehiculos Anunciados</td>
-            <td>Vehiculos Descargados</td>
-            <td>Restantes</td>
-            <td className="no-mostrar">Fecha y Hora Ultima Sincronizacion</td>
-          </tr>
-          <tr>
-            <td>1182</td>
-            <td>0</td>
-            <td>1182</td>
-            <td className="no-mostrar"></td>
-          </tr>
-        </tbody>
-      </table>
+      <div className="row text-center">
+        <div className="col"> <h5>Descargados</h5> </div>
+        <div className="col"> <h5>Restantes</h5>  </div>
+      </div>
+      <div className="row text-center">
+        <div className="col"> <h6>{descargados}</h6> </div>
+        <div className="col"><h6>{cantidad - descargados}</h6></div>
+      </div>
+     
     </div>
   );
 }
