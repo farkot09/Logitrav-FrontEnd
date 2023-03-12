@@ -59,3 +59,39 @@ export const eliminarChasisPlanilla = async (planilla,data) => {
   const response = await res.json();
   return response;
 };
+
+export const agregarChasisAPlanilla = async (data) => {    
+  const res = await fetch(`${ruta}programacion/agregarChasisAPlanilla`, {
+    method: "POST",
+    headers: { 
+        'Authorization': `Bearer ${token}`,
+        "Content-Type": "application/json",},
+    body: JSON.stringify(data),
+  });
+  const response = await res.json();
+  return response;
+};
+
+export const actualizarPlanilla = async (data) => {    
+  const res = await fetch(`${ruta}programacion/actualizarPlanilla`, {
+    method: "PATCH",
+    headers: { 
+        'Authorization': `Bearer ${token}`,
+        "Content-Type": "application/json",},
+    body: JSON.stringify(data),
+  });
+  const response = await res.json();
+  return response;
+};
+
+export const despacharPlanilla = async (planilla) => {    
+  const res = await fetch(`${ruta}despachos/${planilla}`, {
+    method: "POST",
+    headers: { 
+        'Authorization': `Bearer ${token}`,
+        "Content-Type": "application/json",},
+        //body: JSON.stringify(data),
+  });
+  const response = await res.json();
+  return response;
+};
